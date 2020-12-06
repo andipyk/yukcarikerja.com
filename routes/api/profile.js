@@ -121,18 +121,20 @@ router.get("/", async (req, res) => {
 // @route  GET api/profile/user/:user_id
 // @desc   get  profile by id
 // @access Public
-
 router.get("/user/:user_id", async (req, res) => {
   try {
+    // if (req.params.user_id)
     const profile = await Profile.findOne({
       user: req.params.user_id,
     }).populate("user", ["name", "avatar"]);
 
-    if (!profile) return res.status(400).json({ msg: "no user found" });
+    if (!profile) return res.json({ msg: "profile not found" });
+
     res.json(profile);
   } catch (error) {
     console.log(error.message);
-    res.status(500).send("error");
+    if (error.kind == "ObjectId") return res.json({ msg: "profile not found" });
+    res.status(500).send("Server Error");
   }
 });
 
