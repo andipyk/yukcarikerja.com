@@ -1,4 +1,4 @@
 {
     "mongoURI": "mongodb+srv://carikerja:carikerja@devconnector.pg3q9.mongodb.net/carikerja?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoket",
+    "jwtSecret": "mysecrettoket"
 }
